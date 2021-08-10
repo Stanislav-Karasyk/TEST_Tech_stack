@@ -1,20 +1,13 @@
-import React from "react";
+import React from 'react';
+import { connect } from 'react-redux';
+import { deleteBike } from '../../redux/bikes/bikes-operations';
 
-const AvailableList = () => {
-  const bikes = [
-    {
-      id: "1",
-      name: "Test",
-      type: "City",
-      price: 10,
-    },
-    {
-      id: "2",
-      name: "Test2",
-      type: "Mountain",
-      price: 15,
-    },
-  ];
+const AvailableList = ({ bikes, deleteBike }) => {
+
+  const onHandleChange = e => {
+    deleteBike(e.target.id);
+  };
+
   return (
     <div>
       <h1>Available List</h1>
@@ -27,7 +20,7 @@ const AvailableList = () => {
             <button id={id} type="button">
               Rent
             </button>
-            <button id={id} type="button">
+            <button id={id} type="button" onClick={onHandleChange}>
               Delete
             </button>
           </li>
@@ -37,4 +30,12 @@ const AvailableList = () => {
   );
 };
 
-export default AvailableList;
+const mapDispatchToProps = dispatch => ({
+  onDeleteBike: id => dispatch(deleteBike(id)),
+});
+
+const mapStateToProps = state => ({
+  bikes: state.bikes.bikes
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AvailableList);

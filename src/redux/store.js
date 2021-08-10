@@ -1,16 +1,12 @@
-// import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import bikesReducer from "./bikes/bikes-reduser";
 
-// const store = configureStore({
-
-// })
-
-// export default store;
-
-import { createStore } from 'redux';
-
-// Используем редюсер-болванку
-const reducer = (state = {}, action) => state;
-
-const store = createStore(reducer);
+const store = configureStore({
+  reducer: {
+    bikes: bikesReducer,
+  },
+  devTools: process.env.NODE_ENV === "development",
+});
 
 export default store;
+
