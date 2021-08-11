@@ -12,6 +12,10 @@ const deleteBikeRequest = createAction("bikes/deleteBikeRequest");
 const deleteBikeSuccess = createAction("bikes/deleteBikeSuccess");
 const deleteBikeError = createAction("bikes/deleteBikeError");
 
+const toggleAvailabilityRequest = createAction("bikes/toggleAvailabilityRequest");
+const toggleAvailabilitySuccess = createAction("bikes/toggleAvailabilitySuccess");
+const toggleAvailabilityError = createAction("bikes/toggleAvailabilityError");
+
 export {
   fetchBikesRequest,
   fetchBikesSuccess,
@@ -22,4 +26,7 @@ export {
   deleteBikeRequest,
   deleteBikeSuccess,
   deleteBikeError,
+  toggleAvailabilityRequest,
+  toggleAvailabilitySuccess,
+  toggleAvailabilityError,
 };

@@ -10,7 +10,7 @@ class BikeForm extends Component {
   };
 
   componentDidMount() {
-    this.props.onfetchBikes();
+    this.props.onFetchBikes();
   }
 
   handleInput = e => {
@@ -29,7 +29,7 @@ class BikeForm extends Component {
 
     return (
       <div>
-        <h2>Create new rent</h2>
+        <p>Create new rent</p>
         <form onSubmit={this.handleSubmit}>
           <label>
             Bike name
@@ -61,7 +61,7 @@ class BikeForm extends Component {
             Rent price
             <input
               name="price"
-              type="text"
+              type="number"
               onChange={this.handleInput}
               value={price}
             />
@@ -76,7 +76,7 @@ class BikeForm extends Component {
 const mapDispatchToProps = dispatch => ({
   onAddBike: ({ name, type, price }) =>
     dispatch(addBike({ name, type, price })),
-  onfetchBikes: () => dispatch(fetchBikes()),
+  onFetchBikes: () => dispatch(fetchBikes()),
 });
 
 export default connect(null, mapDispatchToProps)(BikeForm);

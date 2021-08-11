@@ -3,19 +3,22 @@
     {
       "name": "bob",
       "type": "Mountain",
-      "price": "2",
+      "price": "50",
+      "availability": false,
       "id": 1
     },
     {
-      "name": "Станислав",
-      "type": "Hybrid",
-      "price": "3",
+      "name": "aaa",
+      "type": "BMX",
+      "price": "50",
+      "availability": false,
       "id": 2
     },
     {
-      "name": "1",
-      "type": "Hybrid",
-      "price": "15",
+      "name": "Станислав",
+      "type": "Mountain",
+      "price": "200",
+      "availability": false,
       "id": 3
     }
   ]

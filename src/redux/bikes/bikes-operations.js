@@ -3,6 +3,7 @@ import {
   fetchBikesSuccess,
   addBikeSuccess,
   deleteBikeSuccess,
+  toggleAvailabilitySuccess
 } from './bikes-actions';
 
 axios.defaults.baseURL = 'http://localhost:3004';
@@ -21,6 +22,7 @@ const addBike =
       name,
       type,
       price,
+      availability: true,
     };
 
     try {
@@ -36,4 +38,13 @@ const deleteBike = id => async dispatch => {
   } catch (error) {}
 };
 
-export { fetchBikes, addBike, deleteBike };
+const toggleAvailability = ({ id, availability }) => dispatch => {
+    const update = { availability };
+  
+    axios
+      .patch(`/bikes/${id}`, update)
+      .then(({ data }) => dispatch(toggleAvailabilitySuccess(data)))
+      .catch();
+  };
+
+export { fetchBikes, addBike, deleteBike, toggleAvailability };
