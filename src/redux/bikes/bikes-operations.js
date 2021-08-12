@@ -44,10 +44,12 @@ const toggleAvailability =
   ({ id, availability }) =>
   dispatch => {
     const update = { availability };
-
+    console.log('update', update)
     axios
       .patch(`/bikes/${id}`, update)
-      .then(({ data }) => dispatch(toggleAvailabilitySuccess(data)))
+      .then(({ data }) => {dispatch(toggleAvailabilitySuccess(data))
+        console.log("data", data)
+    })
       .catch();
   };
 

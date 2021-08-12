@@ -18,7 +18,8 @@ const AvailableList = ({
 
   const handleRent = e => {
     const id = e.target.id;
-    const availability = bikes;
+    const availability = bikes[0].availability;
+    console.log("availability in handleRent",availability);
     const startTime = Date.now();
 
     onToggleAvailability({ id, availability: !availability });

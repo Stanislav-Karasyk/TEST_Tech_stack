@@ -1,22 +1,3 @@
 {
-  "bikes": [
-    {
-      "name": "bob",
-      "type": "City",
-      "price": "2",
-      "availability": [
-        {
-          "name": "bob",
-          "type": "City",
-          "price": "2",
-          "availability": false,
-          "id": 1,
-          "timeStartRent": 1628769207383
-        }
-      ],
-      "id": 1,
-      "timeStartRent": 1628769207383,
-      "timeEndRent": 1628769213735
-    }
-  ]
+  "bikes": []
 }
