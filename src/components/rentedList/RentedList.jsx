@@ -1,12 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleAvailability } from '../../redux/bikes/bikes-operations';
+import {
+  toggleAvailability,
+  addTimeEndRent,
+} from '../../redux/bikes/bikes-operations';
 
-const RentedList = ({ bikes, onToggleAvailability }) => {
+const RentedList = ({ bikes, onToggleAvailability, onAddTimeEndRent }) => {
   const totalPrice = bikes.reduce(
     (total, bike) => total + Number(bike.price),
-    0
-    );
+    0,
+  );
+
+  const handleCancelRent = e => {
+    const id = e.target.id;
+    const availability = bikes;
+    const endTime = Date.now();
+
+    onToggleAvailability({ id, availability });
+    onAddTimeEndRent({ id, timeEndRent: endTime });
+  };
+
   return (
     <div>
       <p>
@@ -18,13 +31,7 @@ const RentedList = ({ bikes, onToggleAvailability }) => {
             <span>
               {name} / {type} / ${price}
             </span>
-            <button
-              id={id}
-              type="button"
-              onClick={() =>
-                onToggleAvailability({ id, availability: !availability })
-              }
-            >
+            <button id={id} type="button" onClick={handleCancelRent}>
               Cancel rent
             </button>
           </li>
@@ -36,6 +43,7 @@ const RentedList = ({ bikes, onToggleAvailability }) => {
 
 const mapDispatchToProps = dispatch => ({
   onToggleAvailability: id => dispatch(toggleAvailability(id)),
+  onAddTimeEndRent: id => dispatch(addTimeEndRent(id)),
 });
 
 const mapStateToProps = state => ({

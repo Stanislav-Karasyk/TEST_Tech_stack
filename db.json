@@ -2,24 +2,21 @@
   "bikes": [
     {
       "name": "bob",
-      "type": "Mountain",
-      "price": "50",
-      "availability": false,
-      "id": 1
-    },
-    {
-      "name": "aaa",
-      "type": "BMX",
-      "price": "50",
-      "availability": false,
-      "id": 2
-    },
-    {
-      "name": "Станислав",
-      "type": "Mountain",
-      "price": "200",
-      "availability": false,
-      "id": 3
+      "type": "City",
+      "price": "2",
+      "availability": [
+        {
+          "name": "bob",
+          "type": "City",
+          "price": "2",
+          "availability": false,
+          "id": 1,
+          "timeStartRent": 1628769207383
+        }
+      ],
+      "id": 1,
+      "timeStartRent": 1628769207383,
+      "timeEndRent": 1628769213735
     }
   ]
 }

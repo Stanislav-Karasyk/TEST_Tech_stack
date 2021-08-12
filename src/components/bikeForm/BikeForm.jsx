@@ -21,6 +21,7 @@ class BikeForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.onAddBike(this.state);
+
     this.setState({ name: '', type: '', price: '' });
   };
 

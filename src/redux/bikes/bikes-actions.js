@@ -16,6 +16,9 @@ const toggleAvailabilityRequest = createAction("bikes/toggleAvailabilityRequest"
 const toggleAvailabilitySuccess = createAction("bikes/toggleAvailabilitySuccess");
 const toggleAvailabilityError = createAction("bikes/toggleAvailabilityError");
 
+const addTimeStartRentSuccess = createAction("bikes/addTimeStartRentSuccess");
+const addTimeEndRentSuccess = createAction("bikes/addTimeEndRentSuccess");
+
 export {
   fetchBikesRequest,
   fetchBikesSuccess,
@@ -29,4 +32,6 @@ export {
   toggleAvailabilityRequest,
   toggleAvailabilitySuccess,
   toggleAvailabilityError,
+  addTimeStartRentSuccess,
+  addTimeEndRentSuccess,
 };

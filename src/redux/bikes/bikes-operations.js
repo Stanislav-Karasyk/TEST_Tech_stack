@@ -3,10 +3,12 @@ import {
   fetchBikesSuccess,
   addBikeSuccess,
   deleteBikeSuccess,
-  toggleAvailabilitySuccess
+  toggleAvailabilitySuccess,
+  addTimeStartRentSuccess,
+  addTimeEndRentSuccess,
 } from './bikes-actions';
 
-axios.defaults.baseURL = 'http://localhost:3004';
+axios.defaults.baseURL = 'http://localhost:4040';
 
 const fetchBikes = () => async dispatch => {
   try {
@@ -16,7 +18,7 @@ const fetchBikes = () => async dispatch => {
 };
 
 const addBike =
-  ({ name, type, price }) =>
+  ({ name, type, price}) =>
   async dispatch => {
     const bike = {
       name,
@@ -38,13 +40,44 @@ const deleteBike = id => async dispatch => {
   } catch (error) {}
 };
 
-const toggleAvailability = ({ id, availability }) => dispatch => {
+const toggleAvailability =
+  ({ id, availability }) =>
+  dispatch => {
     const update = { availability };
-  
+
     axios
       .patch(`/bikes/${id}`, update)
       .then(({ data }) => dispatch(toggleAvailabilitySuccess(data)))
       .catch();
   };
 
-export { fetchBikes, addBike, deleteBike, toggleAvailability };
+const addTimeStartRent =
+  ({ id, timeStartRent }) =>
+  dispatch => {
+    const update = { timeStartRent };
+
+    axios
+      .patch(`/bikes/${id}`, update)
+      .then(({ data }) => dispatch(addTimeStartRentSuccess(data)))
+      .catch();
+  };
+
+const addTimeEndRent =
+  ({ id, timeEndRent }) =>
+  dispatch => {
+    const update = { timeEndRent };
+
+    axios
+      .patch(`/bikes/${id}`, update)
+      .then(({ data }) => dispatch(addTimeEndRentSuccess(data)))
+      .catch();
+  };
+
+export {
+  fetchBikes,
+  addBike,
+  deleteBike,
+  toggleAvailability,
+  addTimeStartRent,
+  addTimeEndRent,
+};

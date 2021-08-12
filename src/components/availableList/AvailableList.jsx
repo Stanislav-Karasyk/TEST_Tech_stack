@@ -3,31 +3,43 @@ import { connect } from 'react-redux';
 import {
   deleteBike,
   toggleAvailability,
+  addTimeStartRent,
 } from '../../redux/bikes/bikes-operations';
 
-const AvailableList = ({ bikes, onDeleteBike, onToggleAvailability }) => {
+const AvailableList = ({
+  bikes,
+  onDeleteBike,
+  onToggleAvailability,
+  onAddTimeStartRent,
+}) => {
   const handleDelete = e => {
     onDeleteBike(e.target.id);
   };
 
+  const handleRent = e => {
+    const id = e.target.id;
+    const availability = bikes;
+    const startTime = Date.now();
+
+    onToggleAvailability({ id, availability: !availability });
+    onAddTimeStartRent({ id, timeStartRent: startTime });
+    
+  };
+
   const totalBikes = bikes.length;
-  
+
   return (
     <div>
-      <p>Available List <span>({totalBikes})</span></p>
+      <p>
+        Available List <span>({totalBikes})</span>
+      </p>
       <ul>
-        {bikes.map(({ id, name, type, price, availability }) => (
+        {bikes.map(({ id, name, type, price, availability, timeStartRent }) => (
           <li key={id}>
             <span>
               {name} / {type} / ${price}
             </span>
-            <button
-              id={id}
-              type="button"
-              onClick={() =>
-                onToggleAvailability({ id, availability: !availability })
-              }
-            >
+            <button id={id} type="button" onClick={handleRent}>
               Rent
             </button>
             <button id={id} type="button" onClick={handleDelete}>
@@ -43,10 +55,11 @@ const AvailableList = ({ bikes, onDeleteBike, onToggleAvailability }) => {
 const mapDispatchToProps = dispatch => ({
   onDeleteBike: id => dispatch(deleteBike(id)),
   onToggleAvailability: id => dispatch(toggleAvailability(id)),
+  onAddTimeStartRent: id => dispatch(addTimeStartRent(id)),
 });
 
 const mapStateToProps = state => ({
-  bikes: state.bikes.bikes.filter(({availability}) => availability )
+  bikes: state.bikes.bikes.filter(({ availability }) => availability),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AvailableList);
