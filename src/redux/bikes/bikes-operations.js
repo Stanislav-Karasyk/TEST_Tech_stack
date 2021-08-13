@@ -14,11 +14,11 @@ const fetchBikes = () => async dispatch => {
   try {
     const { data } = await axios.get('/bikes');
     dispatch(fetchBikesSuccess(data));
-  } catch (error) {}
+  } catch (err) {}
 };
 
 const addBike =
-  ({ name, type, price}) =>
+  ({ name, type, price }) =>
   async dispatch => {
     const bike = {
       name,
@@ -30,26 +30,23 @@ const addBike =
     try {
       const { data } = await axios.post('/bikes', bike);
       dispatch(addBikeSuccess(data));
-    } catch (error) {}
+    } catch (err) {}
   };
 
 const deleteBike = id => async dispatch => {
   try {
     await axios.delete(`/bikes/${id}`);
     dispatch(deleteBikeSuccess(id));
-  } catch (error) {}
+  } catch (err) {}
 };
 
 const toggleAvailability =
   ({ id, availability }) =>
   dispatch => {
     const update = { availability };
-    console.log('update', update)
     axios
       .patch(`/bikes/${id}`, update)
-      .then(({ data }) => {dispatch(toggleAvailabilitySuccess(data))
-        console.log("data", data)
-    })
+      .then(({ data }) => dispatch(toggleAvailabilitySuccess(data)))
       .catch();
   };
 
@@ -57,7 +54,6 @@ const addTimeStartRent =
   ({ id, timeStartRent }) =>
   dispatch => {
     const update = { timeStartRent };
-
     axios
       .patch(`/bikes/${id}`, update)
       .then(({ data }) => dispatch(addTimeStartRentSuccess(data)))
@@ -68,7 +64,6 @@ const addTimeEndRent =
   ({ id, timeEndRent }) =>
   dispatch => {
     const update = { timeEndRent };
-
     axios
       .patch(`/bikes/${id}`, update)
       .then(({ data }) => dispatch(addTimeEndRentSuccess(data)))

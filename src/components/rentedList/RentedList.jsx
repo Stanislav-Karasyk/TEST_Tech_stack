@@ -13,10 +13,11 @@ const RentedList = ({ bikes, onToggleAvailability, onAddTimeEndRent }) => {
 
   const handleCancelRent = e => {
     const id = e.target.id;
-    const availability = bikes;
+    const availability = false;
     const endTime = Date.now();
 
-    onToggleAvailability({ id, availability });
+
+    onToggleAvailability({ id, availability: !availability });
     onAddTimeEndRent({ id, timeEndRent: endTime });
   };
 
@@ -26,7 +27,7 @@ const RentedList = ({ bikes, onToggleAvailability, onAddTimeEndRent }) => {
         Rented List <span>(Total: ${totalPrice})</span>
       </p>
       <ul>
-        {bikes.map(({ id, name, type, price, availability }) => (
+        {bikes.map(({ id, name, type, price }) => (
           <li key={id}>
             <span>
               {name} / {type} / ${price}

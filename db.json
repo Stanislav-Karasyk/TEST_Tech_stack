@@ -1,3 +1,22 @@
 {
-  "bikes": []
+  "bikes": [
+    {
+      "name": "bob",
+      "type": "Mountain",
+      "price": "20",
+      "availability": true,
+      "id": 1,
+      "timeStartRent": 1628851215374,
+      "timeEndRent": 1628851352865
+    },
+    {
+      "name": "aaa",
+      "type": "Hybrid",
+      "price": "1",
+      "availability": true,
+      "id": 2,
+      "timeStartRent": 1628851484886,
+      "timeEndRent": 1628851505289
+    }
+  ]
 }

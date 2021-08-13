@@ -18,13 +18,23 @@ const AvailableList = ({
 
   const handleRent = e => {
     const id = e.target.id;
-    const availability = bikes[0].availability;
-    console.log("availability in handleRent",availability);
+    const availability = true;
     const startTime = Date.now();
 
     onToggleAvailability({ id, availability: !availability });
     onAddTimeStartRent({ id, timeStartRent: startTime });
-    
+  };
+
+  const handleTimeRent = e => {
+    const id = e.target.id;
+    return bikes.map(bike => {
+      if (bike.id == id) {
+        const dif = bike.timeEndRent - bike.timeStartRent;
+        const minutes = Math.floor(dif / (1000 * 60));
+        const hours = Math.floor(dif / (1000 * 60 * 60));
+        alert(`RENT: ${hours}(hours) and ${minutes}(minutes)`);
+      }
+    });
   };
 
   const totalBikes = bikes.length;
@@ -35,7 +45,7 @@ const AvailableList = ({
         Available List <span>({totalBikes})</span>
       </p>
       <ul>
-        {bikes.map(({ id, name, type, price, availability, timeStartRent }) => (
+        {bikes.map(({ id, name, type, price }) => (
           <li key={id}>
             <span>
               {name} / {type} / ${price}
@@ -45,6 +55,9 @@ const AvailableList = ({
             </button>
             <button id={id} type="button" onClick={handleDelete}>
               Delete
+            </button>
+            <button id={id} type="button" onClick={handleTimeRent}>
+              TimeRent
             </button>
           </li>
         ))}
