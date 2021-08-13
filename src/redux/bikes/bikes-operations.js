@@ -8,12 +8,13 @@ import {
   addTimeEndRentSuccess,
 } from './bikes-actions';
 
-axios.defaults.baseURL = 'http://localhost:4040';
+axios.defaults.baseURL = 'http://localhost:3001';
 
 const fetchBikes = () => async dispatch => {
   try {
     const { data } = await axios.get('/bikes');
-    dispatch(fetchBikesSuccess(data));
+    console.log(data)
+    dispatch(fetchBikesSuccess(data.data.bikes));
   } catch (err) {}
 };
 

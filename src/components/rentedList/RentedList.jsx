@@ -27,12 +27,12 @@ const RentedList = ({ bikes, onToggleAvailability, onAddTimeEndRent }) => {
         Rented List <span>(Total: ${totalPrice})</span>
       </p>
       <ul>
-        {bikes.map(({ id, name, type, price }) => (
-          <li key={id}>
+        {bikes.map(({ _id, name, type, price }) => (
+          <li key={_id}>
             <span>
               {name} / {type} / ${price}
             </span>
-            <button id={id} type="button" onClick={handleCancelRent}>
+            <button id={_id} type="button" onClick={handleCancelRent}>
               Cancel rent
             </button>
           </li>
@@ -43,7 +43,7 @@ const RentedList = ({ bikes, onToggleAvailability, onAddTimeEndRent }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onToggleAvailability: id => dispatch(toggleAvailability(id)),
+  onToggleAvailability: _id => dispatch(toggleAvailability(_id)),
   onAddTimeEndRent: id => dispatch(addTimeEndRent(id)),
 });
 

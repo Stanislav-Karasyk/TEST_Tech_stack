@@ -21,6 +21,7 @@ const AvailableList = ({
     const availability = true;
     const startTime = Date.now();
 
+    console.log("bikes", bikes);
     onToggleAvailability({ id, availability: !availability });
     onAddTimeStartRent({ id, timeStartRent: startTime });
   };
@@ -28,7 +29,7 @@ const AvailableList = ({
   const handleTimeRent = e => {
     const id = e.target.id;
     return bikes.map(bike => {
-      if (bike.id == id) {
+      if (bike._id == id) {
         const dif = bike.timeEndRent - bike.timeStartRent;
         const minutes = Math.floor(dif / (1000 * 60));
         const hours = Math.floor(dif / (1000 * 60 * 60));
@@ -45,18 +46,18 @@ const AvailableList = ({
         Available List <span>({totalBikes})</span>
       </p>
       <ul>
-        {bikes.map(({ id, name, type, price }) => (
-          <li key={id}>
+        {bikes.map(({ _id, name, type, price }) => (
+          <li key={_id}>
             <span>
               {name} / {type} / ${price}
             </span>
-            <button id={id} type="button" onClick={handleRent}>
+            <button id={_id} type="button" onClick={handleRent}>
               Rent
             </button>
-            <button id={id} type="button" onClick={handleDelete}>
+            <button id={_id} type="button" onClick={handleDelete}>
               Delete
             </button>
-            <button id={id} type="button" onClick={handleTimeRent}>
+            <button id={_id} type="button" onClick={handleTimeRent}>
               TimeRent
             </button>
           </li>
